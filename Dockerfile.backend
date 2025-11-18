@@ -1,0 +1,27 @@
+# Dockerfile para API Backend - MV Inventario
+# Node.js + Express + MySQL
+
+FROM node:18-alpine
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar archivos de dependencias
+COPY package*.json ./
+
+# Instalar dependencias
+RUN npm install --only=production
+
+# Copiar código de la aplicación
+COPY server.js .
+COPY db_schema.sql .
+
+# Exponer puerto
+EXPOSE 3000
+
+# Variables de entorno por defecto
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Comando de inicio
+CMD ["node", "server.js"]

@@ -1,0 +1,16 @@
+{
+  "name": "mv-inventario-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MV Inventario - Sistema de Gestión de Inventario de Ropa",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "mysql2": "^3.6.5",
+    "json2csv": "^6.0.0-alpha.2",
+    "exceljs": "^4.4.0"
+  }
+}
