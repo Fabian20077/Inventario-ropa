@@ -1,201 +1,253 @@
-# Sistema de Inventario de Ropa
+# 🏪 MV Inventario - Sistema de Gestión de Inventario de Ropa
 
-Sistema completo de gestión de inventario de ropa con autenticación, CRUD de productos, control de stock y registro de movimientos.
+Un sistema completo y moderno para gestionar el inventario de una tienda de ropa, con dashboard intuitivo, reportes en Excel/CSV, y control de movimientos de inventario en tiempo real.
 
-## Características
+## ✨ Características
 
-### Funcionalidades Principales
+- ✅ Dashboard responsivo y moderno
+- ✅ Sistema de autenticación seguro
+- ✅ Gestión de productos (crear, editar, eliminar)
+- ✅ Control de inventario (entradas y salidas)
+- ✅ Reportes en Excel y CSV
+- ✅ Modo oscuro/claro
+- ✅ Indicadores de stock bajo
+- ✅ Accesibilidad mejorada
+- ✅ Diseño responsivo (móvil, tablet, desktop)
 
-- **Autenticación y Autorización**: Sistema de login con OAuth de Manus, roles de usuario (admin/usuario)
-- **Gestión de Categorías**: CRUD completo de categorías de productos
-- **Gestión de Productos**: CRUD completo con SKU único, precio, stock y categorización
-- **Control de Stock**: Registro de entradas y salidas con validación de stock disponible
-- **Historial de Movimientos**: Registro completo de todos los movimientos de inventario
-- **Gestión de Usuarios**: Panel de administración para gestionar usuarios (solo admin)
-- **Dashboard**: Estadísticas y resumen del inventario
+## 🛠️ Requisitos Previos
 
-### Tecnologías Utilizadas
+Antes de empezar, asegúrate de tener instalado:
 
-#### Frontend
-- React 19
-- TypeScript
-- Tailwind CSS 4
-- tRPC para comunicación tipo-segura con el backend
-- Wouter para enrutamiento
-- Shadcn/UI para componentes
+- **Docker Desktop** - [Descargar](https://www.docker.com/products/docker-desktop)
+- **Git** - [Descargar](https://git-scm.com/download/win)
+- **Node.js** (opcional, si quieres trabajar con el código) - [Descargar](https://nodejs.org/)
 
-#### Backend
-- Node.js 22
-- Express 4
-- tRPC 11 para API tipo-segura
-- Drizzle ORM para base de datos
-- MySQL 8.0
+## 🚀 Instalación Rápida
 
-#### Despliegue
-- Docker y Docker Compose
-- Multi-stage builds para optimización
+### 1. Clonar el repositorio
 
-## Estructura de Base de Datos
+```bash
+git clone https://github.com/Fabian20077/Inventario-ropa.git
+cd Inventario-ropa
+```
 
-### Tablas
+### 2. Instalar dependencias
 
-1. **users**: Usuarios del sistema con autenticación OAuth
-2. **roles**: Roles del sistema (admin, usuario)
-3. **categorias**: Categorías de productos
-4. **productos**: Productos del inventario con SKU, precio y stock
-5. **movimientos**: Registro de entradas y salidas de inventario
+```bash
+npm install --legacy-peer-deps
+```
 
-Ver `db_schema.sql` para el esquema completo.
+### 3. Iniciar los contenedores
 
-## Instalación y Configuración
+```bash
+docker-compose up -d
+```
 
-### Requisitos Previos
+Espera 2-3 minutos a que los contenedores levanten completamente.
 
-- Node.js 22+
-- pnpm
-- MySQL 8.0 (o usar Docker)
+### 4. Acceder al sistema
 
-### Instalación Local
+Abre tu navegador en:
 
-1. Clonar el repositorio
-2. Instalar dependencias:
-   ```bash
-   pnpm install
-   ```
+```
+http://localhost:8081
+```
 
-3. Configurar variables de entorno (ver `.env.example`)
+## 📝 Credenciales de Acceso
 
-4. Ejecutar migraciones de base de datos:
-   ```bash
-   pnpm db:push
-   ```
+```
+Email: admin@mv.com
+Contraseña: password123
+```
 
-5. Iniciar el servidor de desarrollo:
-   ```bash
-   pnpm dev
-   ```
+## 📊 Puertos Disponibles
 
-La aplicación estará disponible en `http://localhost:3000`
+| Servicio | Puerto | URL |
+|----------|--------|-----|
+| Frontend (Dashboard) | 8081 | http://localhost:8081 |
+| Backend API | 3000 | http://localhost:3000 |
+| MySQL Database | 3307 | localhost:3307 |
 
-### Despliegue con Docker
+## 🎯 Funcionalidades Principales
 
-1. Construir y ejecutar los contenedores:
-   ```bash
-   docker-compose up -d
-   ```
+### Dashboard
+- Estadísticas en tiempo real (Total de productos, stock, categorías, movimientos)
+- Productos recientes con indicador de stock
+- Movimientos recientes
+- Acceso rápido a funciones principales
 
-2. La aplicación estará disponible en `http://localhost:3000`
+### Gestión de Productos
+- Crear nuevos productos
+- Editar información
+- Eliminar productos
+- Ver stock disponible
+- Establecer stock mínimo
 
-3. Para detener los contenedores:
-   ```bash
-   docker-compose down
-   ```
+### Movimientos de Inventario
+- Registrar entradas (compras)
+- Registrar salidas (ventas)
+- Historial de movimientos
+- Detalles de cada movimiento
+- Opción para eliminar movimientos
 
-4. Para ver logs:
-   ```bash
-   docker-compose logs -f app
-   ```
+### Reportes
+- Exportar productos a Excel
+- Exportar productos a CSV
+- Exportar movimientos a Excel
+- Exportar movimientos a CSV
 
-### Configuración de Variables de Entorno
+### Interfaz
+- Modo oscuro/claro
+- Diseño responsivo para móviles
+- Interfaz intuitiva y moderna
+- Animaciones suaves
 
-Editar `docker-compose.yml` y actualizar:
+## 🔧 Comandos Útiles
 
-- `MYSQL_ROOT_PASSWORD`: Contraseña de root de MySQL
-- `MYSQL_PASSWORD`: Contraseña del usuario de la base de datos
-- `JWT_SECRET`: Clave secreta para JWT
-- `OWNER_OPEN_ID`: OpenID del propietario/administrador principal
-- Otras variables según necesidad
+### Ver estado de los contenedores
+```bash
+docker-compose ps
+```
 
-## Uso del Sistema
+### Ver logs del servidor
+```bash
+docker-compose logs app
+```
 
-### Roles y Permisos
+### Ver logs de la base de datos
+```bash
+docker-compose logs db
+```
 
-- **Admin**: Acceso completo a todas las funcionalidades incluyendo gestión de usuarios
-- **Usuario**: Acceso a gestión de categorías, productos y movimientos
+### Reiniciar los contenedores
+```bash
+docker-compose restart
+```
 
-### Flujo de Trabajo Típico
+### Detener los contenedores
+```bash
+docker-compose down
+```
 
-1. **Login**: Autenticarse con OAuth de Manus
-2. **Crear Categorías**: Definir categorías de productos (ej: Camisas, Pantalones)
-3. **Registrar Productos**: Agregar productos con SKU, nombre, precio y categoría
-4. **Registrar Movimientos**: 
-   - **Entrada**: Agregar stock (compras, devoluciones)
-   - **Salida**: Reducir stock (ventas, pérdidas)
-5. **Monitorear**: Ver dashboard con estadísticas y movimientos recientes
+### Limpiar todo y empezar de cero
+```bash
+docker-compose down -v
+docker-compose up -d --build
+```
 
-### Validaciones de Negocio
+## 🐛 Solución de Problemas
 
-- SKU único por producto
-- Stock no puede ser negativo
-- No se pueden eliminar categorías con productos asociados
-- No se pueden eliminar productos con movimientos registrados
+### El proyecto no abre en http://localhost:8081
 
-## Estructura del Proyecto
+1. Verifica que Docker esté corriendo:
+```bash
+docker-compose ps
+```
+
+2. Si no aparecen los contenedores, reinicia:
+```bash
+docker-compose restart
+```
+
+3. Espera 2-3 minutos a que levante completamente
+
+### Error: "Puerto 8081 ya está en uso"
+
+Cambia el puerto en `docker-compose.yml`:
+```yaml
+ports:
+  - "8082:80"  # Usa 8082 en lugar de 8081
+```
+
+### No puedo entrar con las credenciales
+
+Verifica que la base de datos haya inicializado correctamente:
+```bash
+docker-compose logs db
+```
+
+### Debo regenerar node_modules
+
+```bash
+rm -r node_modules
+npm install --legacy-peer-deps
+docker-compose restart
+```
+
+## 📁 Estructura del Proyecto
 
 ```
 inventario-ropa/
-├── client/              # Frontend React
-│   ├── src/
-│   │   ├── pages/      # Páginas de la aplicación
-│   │   ├── components/ # Componentes reutilizables
-│   │   └── lib/        # Utilidades y configuración
-├── server/              # Backend Express + tRPC
-│   ├── routers.ts      # Definición de procedimientos tRPC
-│   ├── db.ts           # Funciones de base de datos
-│   └── _core/          # Configuración del framework
-├── drizzle/             # Esquema y migraciones de DB
-│   └── schema.ts       # Definición de tablas
-├── Dockerfile           # Configuración de Docker
-├── docker-compose.yml   # Orquestación de servicios
-└── db_schema.sql        # Script SQL de inicialización
+├── Frontend/                 # Interfaz web
+│   ├── dashboard.html       # Dashboard principal
+│   ├── login.html          # Página de login
+│   └── app.js              # Lógica del frontend
+├── config/                  # Configuración
+│   └── database.js         # Conexión a MySQL
+├── dao/                     # Data Access Objects
+│   ├── ProductoDAO.js
+│   └── UsuarioDAO.js
+├── routes/                  # Rutas de API
+│   └── reportes.js
+├── server.js               # Servidor principal
+├── docker-compose.yml      # Configuración Docker
+├── Dockerfile              # Imagen del backend
+└── README.md              # Este archivo
 ```
 
-## API (tRPC)
+## 🔐 Seguridad
 
-### Endpoints Principales
+- Las contraseñas se almacenan hasheadas con bcrypt
+- Autenticación por token JWT
+- Validación de datos en backend
+- CORS configurado
 
-#### Categorías
-- `categorias.list`: Listar todas las categorías
-- `categorias.create`: Crear nueva categoría
-- `categorias.update`: Actualizar categoría
-- `categorias.delete`: Eliminar categoría (solo admin)
+## 🎨 Tecnologías Utilizadas
 
-#### Productos
-- `productos.list`: Listar todos los productos
-- `productos.create`: Crear nuevo producto
-- `productos.update`: Actualizar producto
-- `productos.delete`: Eliminar producto (solo admin)
+### Frontend
+- HTML5
+- CSS3 (Tailwind CSS)
+- JavaScript vanilla
+- Bootstrap Icons
 
-#### Movimientos
-- `movimientos.list`: Listar todos los movimientos
-- `movimientos.registrar`: Registrar entrada/salida de stock
+### Backend
+- Node.js
+- Express.js
+- MySQL
+- bcryptjs
 
-#### Usuarios (Solo Admin)
-- `usuarios.list`: Listar usuarios
-- `usuarios.updateStatus`: Activar/desactivar usuario
-- `usuarios.updateRole`: Cambiar rol de usuario
+### DevOps
+- Docker
+- Docker Compose
+- Nginx
 
-## Desarrollo
+## 📈 Próximas Mejoras
 
-### Scripts Disponibles
+- [ ] Búsqueda y filtros avanzados
+- [ ] Resumen financiero (ingresos/gastos)
+- [ ] Gráficos de ventas
+- [ ] Notificaciones por email
+- [ ] Autenticación con 2FA
+- [ ] Múltiples usuarios con roles
 
-- `pnpm dev`: Iniciar servidor de desarrollo
-- `pnpm build`: Construir para producción
-- `pnpm db:push`: Aplicar cambios de esquema a la base de datos
-- `pnpm lint`: Ejecutar linter
+## 👨‍💻 Autor
 
-### Agregar Nuevas Funcionalidades
+Desarrollado por **Fabian Pilonieta**
 
-1. Actualizar esquema en `drizzle/schema.ts`
-2. Ejecutar `pnpm db:push`
-3. Agregar funciones helper en `server/db.ts`
-4. Crear procedimientos tRPC en `server/routers.ts`
-5. Implementar UI en `client/src/pages/`
+## 📞 Soporte
 
-## Soporte y Contribuciones
+Si encuentras problemas:
 
-Para reportar problemas o sugerir mejoras, por favor crear un issue en el repositorio.
+1. Revisa la sección "Solución de Problemas"
+2. Consulta los logs: `docker-compose logs app`
+3. Verifica que Docker esté correctamente instalado
 
-## Licencia
+## 📄 Licencia
 
-Este proyecto está bajo licencia MIT.
+Este proyecto es educativo y está disponible para uso académico.
+
+---
+
+**¡Disfruta gestionando tu inventario! 🚀**
+
+Para más información, visita el repositorio: https://github.com/Fabian20077/Inventario-ropa
