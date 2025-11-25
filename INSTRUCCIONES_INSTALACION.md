@@ -12,13 +12,17 @@
 
 2. **Crear el archivo `.env`** en la raíz del proyecto
    
-   Crea un archivo llamado `.env` con el siguiente contenido:
-   ```env
-   JWT_SECRET=inventario_mv_secret_key_change_in_production
-   JWT_EXPIRES_IN=24h
+   Copia el archivo de ejemplo y renómbralo:
+   ```bash
+   cp .env.example .env
    ```
    
-   > ⚠️ **IMPORTANTE:** Este archivo es necesario para la autenticación JWT. Sin él, el backend no funcionará.
+   O en Windows (PowerShell):
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+   
+   > ⚠️ **IMPORTANTE:** Este archivo contiene todas las variables de entorno necesarias, incluyendo `JWT_SECRET` para la autenticación. Sin él, el backend no funcionará.
 
 3. **Iniciar Docker**
    ```bash
@@ -71,14 +75,18 @@ Luego intenta iniciar sesión nuevamente con:
 
 ### Error "JWT_SECRET is required but not configured"
 
-**Causa:** No creaste el archivo `.env` con la variable `JWT_SECRET`.
+**Causa:** No creaste el archivo `.env` con las variables de entorno necesarias.
 
 **Solución:**
 
-Crea un archivo llamado `.env` en la raíz del proyecto con este contenido:
-```env
-JWT_SECRET=inventario_mv_secret_key_change_in_production
-JWT_EXPIRES_IN=24h
+Copia el archivo de ejemplo:
+```bash
+cp .env.example .env
+```
+
+O en Windows (PowerShell):
+```powershell
+Copy-Item .env.example .env
 ```
 
 Luego reinicia Docker:
